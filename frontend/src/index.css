@@ -1,0 +1,258 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Coherent Premium Productivity Palette (Default Light Mode) */
+    --background: 220 14% 97%;       /* #F5F6F8 */
+    --foreground: 222 47% 11%;       /* #111827 */
+    --surface-base: #F5F6F8;
+    --sidebar-bg: #FAFBFC;
+    --header-bg: #FFFFFF;
+    --surface-1: #FFFFFF;
+    --surface-2: #F9FAFB;
+    --surface-3: #F3F4F6;
+    --surface-border: #E5E7EB;
+    
+    --card: 0 0% 100%;               /* #FFFFFF */
+    --card-foreground: 222 47% 11%;  /* #111827 */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    
+    --primary: 239 68% 62%;          /* #5B5CE2 */
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: #4F46E5;
+    --primary-soft: #EEF2FF;
+    --primary-soft-border: #C7D2FE;
+
+    --secondary: 220 13% 91%;        /* #E5E7EB */
+    --secondary-foreground: 222 47% 11%;
+    --muted: 220 14% 96%;            /* #F3F4F6 */
+    --muted-foreground: 215 16% 47%; /* #667085 */
+    --accent: 226 100% 97%;          /* #EEF2FF */
+    --accent-foreground: 239 68% 62%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 220 13% 91%;           /* #E5E7EB */
+    --input: 220 13% 91%;
+    --ring: 239 68% 62%;             /* #5B5CE2 */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Coherent Dark Workspace (Refined & High Contrast) */
+    --background: 222 47% 7%;        /* #0D1117 */
+    --foreground: 210 40% 98%;       /* #F0F6FC */
+    --surface-base: #0D1117;
+    --sidebar-bg: #161B22;
+    --header-bg: #161B22;
+    --surface-1: #1F242C;
+    --surface-2: #282E39;
+    --surface-3: #374151;
+    --surface-border: #30363D;
+
+    --card: 222 47% 11%;             /* #1F242C */
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 239 84% 72%;          /* #797BF2 */
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: #5B5CE2;
+    --primary-soft: rgba(91, 92, 226, 0.15);
+    --primary-soft-border: rgba(91, 92, 226, 0.3);
+
+    --secondary: 217 19% 18%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 19% 14%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 19% 18%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217 19% 20%;
+    --input: 217 19% 20%;
+    --ring: 239 84% 72%;
+  }
+
+  * {
+    border-color: var(--surface-border);
+  }
+
+  *:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 4px #5B5CE2;
+  }
+
+  .dark *:focus-visible {
+    box-shadow: 0 0 0 2px #0D1117, 0 0 0 4px #797BF2;
+  }
+
+  ::selection {
+    background-color: #EEF2FF;
+    color: #3730A3;
+  }
+
+  .dark ::selection {
+    background-color: rgba(91, 92, 226, 0.35);
+    color: #F0F6FC;
+  }
+
+  input, textarea, select {
+    caret-color: #5B5CE2;
+  }
+
+  body {
+    background-color: var(--surface-base);
+    color: var(--foreground);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    letter-spacing: -0.01em;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Clean Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D1D5DB;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #374151;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9CA3AF;
+}
+
+/* Surfaces & Cards */
+.surface-card {
+  background-color: var(--surface-1);
+  border: 1px solid var(--surface-border);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+}
+
+.surface-card-elevated {
+  background-color: var(--surface-1);
+  border: 1px solid var(--surface-border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Semantic HITL Badges with WCAG Compliant Contrast */
+.badge-ai {
+  background-color: #EEF2FF;
+  color: #4338CA;
+  border: 1px solid #C7D2FE;
+}
+.dark .badge-ai {
+  background-color: rgba(99, 102, 241, 0.15);
+  color: #C7D2FE;
+  border: 1px solid rgba(99, 102, 241, 0.35);
+}
+
+.badge-accepted {
+  background-color: #ECFDF5;
+  color: #047857;
+  border: 1px solid #A7F3D0;
+}
+.dark .badge-accepted {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #6EE7B7;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.badge-modified {
+  background-color: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FDE68A;
+}
+.dark .badge-modified {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #FCD34D;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.badge-locked {
+  background-color: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #BFDBFE;
+}
+.dark .badge-locked {
+  background-color: rgba(59, 130, 246, 0.15);
+  color: #93C5FD;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+.badge-rejected {
+  background-color: #FEF2F2;
+  color: #B91C1C;
+  border: 1px solid #FECACA;
+}
+.dark .badge-rejected {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #FCA5A5;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+/* Category soft tints for Timetable & Tasks */
+.category-technical {
+  background-color: #EFF6FF;
+  border-color: #BFDBFE;
+  color: #1E40AF;
+}
+.category-academic {
+  background-color: #EEF2FF;
+  border-color: #C7D2FE;
+  color: #3730A3;
+}
+.category-personal {
+  background-color: #ECFDF5;
+  border-color: #A7F3D0;
+  color: #065F46;
+}
+.category-health {
+  background-color: #FFF7ED;
+  border-color: #FED7AA;
+  color: #9A3412;
+}
+
+.dark .category-technical {
+  background-color: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: #93C5FD;
+}
+.dark .category-academic {
+  background-color: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: #C7D2FE;
+}
+.dark .category-personal {
+  background-color: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #6EE7B7;
+}
+.dark .category-health {
+  background-color: rgba(249, 115, 22, 0.12);
+  border-color: rgba(249, 115, 22, 0.3);
+  color: #FDBA74;
+}
