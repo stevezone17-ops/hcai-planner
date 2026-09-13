@@ -121,7 +121,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
         </div>
 
         {/* Compact Horizontal Statistics Row */}
-        <div className="flex flex-wrap items-center gap-y-3 gap-x-6 sm:gap-x-10 py-3.5 px-4 rounded-xl bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 shadow-xs text-xs">
+        <div className="flex flex-wrap items-center gap-y-3 gap-x-6 sm:gap-x-10 py-3.5 px-4 rounded-xl bg-white/90 dark:bg-[#161B22]/90 border border-slate-200 dark:border-slate-800 shadow-soft text-xs backdrop-blur-sm">
           <div className="flex items-baseline gap-2">
             <span className="text-xl sm:text-2xl font-bold font-mono text-slate-900 dark:text-white">
               {analytics ? analytics.planned_hours : 17.8}h
@@ -160,7 +160,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
 
       {/* 2. CURRENT FOCUS ("NOW") - Central focal object */}
       {currentFocusItem ? (
-        <div className="bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 rounded-xl p-5 sm:p-6 shadow-xs relative overflow-hidden group">
+        <div className="bg-white/95 dark:bg-[#161B22]/95 border border-slate-200 dark:border-slate-800 rounded-xl p-5 sm:p-6 shadow-card relative overflow-hidden group">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
             <div className="flex items-center gap-2.5">
               <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800">
@@ -198,7 +198,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
           <div className="pt-4 flex items-center gap-2.5 border-t border-slate-100 dark:border-slate-800 mt-3">
             <button
               onClick={() => onNavigate("timetable")}
-              className="h-8 px-3 rounded-lg text-xs font-medium text-white bg-[#5B5CE2] hover:bg-[#4F46E5] transition-colors flex items-center gap-1.5 shadow-xs"
+              className="h-8 px-3 rounded-lg text-xs font-medium text-white bg-[#5B5CE2] hover:bg-[#4F46E5] transition-colors flex items-center gap-1.5 shadow-soft"
             >
               <span>View in Timetable</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -274,8 +274,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ onNavigate }) => {
                       onClick={() => onNavigate("timetable")}
                       className={`p-3 rounded-lg border transition-all cursor-pointer flex flex-col sm:flex-row sm:items-center justify-between gap-2 ${
                         isCurrent
-                          ? "bg-white dark:bg-[#161B22] border-slate-300 dark:border-slate-700 shadow-xs"
-                          : "bg-white/70 hover:bg-white dark:bg-[#161B22]/60 dark:hover:bg-[#161B22] border-slate-200 dark:border-slate-800"
+                          ? "bg-white dark:bg-[#161B22] border-slate-300 dark:border-slate-700 shadow-soft"
+                          : "bg-white/80 hover:bg-white dark:bg-[#161B22]/60 dark:hover:bg-[#161B22] border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700"
                       }`}
                     >
                       <div className="space-y-1">

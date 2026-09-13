@@ -85,6 +85,53 @@ def test_locked_item_preservation_during_replan(db_session):
     assert preserved_locked[0].start_time == locked_orig_start
     assert result["preserved_locked_count"] >= 1
 
+def test_locked_item_cannot_be_modified(db_session):
+    user = db_session.query(User).first()
+    item = db_session.query(ScheduleItem).filter(ScheduleItem.user_id == user.id).first()
+    item.locked = True
+    item.status = "LOCKED"
+    db_session.commit()
+    db_session.refresh(item)
+
+    original_start = item.start_time
+    original_end = item.end_time
+
+    from app.services.schedule_service import ScheduleService
+    from app.schemas.schedule import ScheduleModifyRequest
+
+    updated = ScheduleService.modify_item(
+        db_session,
+        item.id,
+        ScheduleModifyRequest(
+            start_time=original_start + timedelta(hours=2),
+            end_time=original_end + timedelta(hours=2),
+            reason="should be blocked"
+        ),
+    )
+
+    assert updated is None
+    db_session.refresh(item)
+    assert item.start_time == original_start
+    assert item.end_time == original_end
+    assert item.locked is True
+
+
+def test_locked_item_cannot_be_rejected(db_session):
+    user = db_session.query(User).first()
+    item = db_session.query(ScheduleItem).filter(ScheduleItem.user_id == user.id).first()
+    item.locked = True
+    item.status = "LOCKED"
+    db_session.commit()
+
+    from app.services.schedule_service import ScheduleService
+
+    rejected = ScheduleService.reject_item(db_session, item.id, reason="Wrong time")
+    assert rejected is None
+    db_session.refresh(item)
+    assert item.status == "LOCKED"
+    assert item.locked is True
+
+
 def test_analytics_metrics(db_session):
     user = db_session.query(User).first()
     # Ensure one item is locked

@@ -106,11 +106,37 @@
   }
 
   body {
-    background-color: var(--surface-base);
+    background:
+      radial-gradient(circle at top left, rgba(91, 92, 226, 0.08), transparent 28%),
+      linear-gradient(180deg, #f8f9fb 0%, var(--surface-base) 28%, var(--surface-base) 100%);
     color: var(--foreground);
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     letter-spacing: -0.01em;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  .dark body {
+    background:
+      radial-gradient(circle at top left, rgba(121, 123, 242, 0.12), transparent 28%),
+      linear-gradient(180deg, #0b1020 0%, var(--surface-base) 32%, var(--surface-base) 100%);
+  }
+}
+
+@layer components {
+  .surface-panel {
+    @apply bg-white/90 dark:bg-[#161B22]/90 border border-slate-200 dark:border-slate-800 rounded-xl shadow-soft;
+  }
+
+  .shadow-soft {
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 10px 24px rgba(15, 23, 42, 0.02);
+  }
+
+  .shadow-card {
+    box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06), 0 2px 6px rgba(15, 23, 42, 0.04);
+  }
+
+  .shadow-elevated {
+    box-shadow: 0 18px 42px rgba(15, 23, 42, 0.12), 0 4px 10px rgba(15, 23, 42, 0.06);
   }
 }
 

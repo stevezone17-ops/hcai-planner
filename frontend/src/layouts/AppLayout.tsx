@@ -132,18 +132,18 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
 
       {/* Sidebar Navigation */}
       <aside
-        className={`fixed top-0 bottom-0 left-0 bg-[#FAFBFC] dark:bg-[#161B22] border-r border-slate-200 dark:border-slate-800 z-50 flex flex-col transition-all duration-200 ease-in-out ${
+        className={`fixed top-0 bottom-0 left-0 bg-white/80 dark:bg-[#161B22]/90 border-r border-slate-200/80 dark:border-slate-800/80 z-50 flex flex-col transition-all duration-200 ease-in-out backdrop-blur-xl ${
           sidebarCollapsed ? "w-16" : "w-60"
         } ${mobileOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"}`}
       >
         {/* Brand Header */}
-        <div className="h-14 px-4 flex items-center justify-between border-b border-slate-200 dark:border-slate-800">
+        <div className="h-14 px-4 flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800/80 bg-white/60 dark:bg-[#161B22]/60 backdrop-blur-sm">
           <div
             className="flex items-center gap-2.5 cursor-pointer"
             onClick={() => onTabChange("landing")}
             title="Go to Landing Page"
           >
-            <div className="w-7 h-7 rounded-lg bg-[#5B5CE2] flex items-center justify-center font-bold text-white text-xs shadow-xs shrink-0">
+            <div className="w-7 h-7 rounded-lg bg-[#5B5CE2] flex items-center justify-center font-bold text-white text-xs shadow-soft shrink-0 ring-2 ring-indigo-100 dark:ring-indigo-900/40">
               H
             </div>
             {!sidebarCollapsed && (
@@ -289,7 +289,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
         </nav>
 
         {/* Bottom User Card & Actions */}
-        <div className="p-3 border-t border-slate-200 dark:border-slate-800 bg-[#FAFBFC] dark:bg-[#161B22] space-y-2">
+        <div className="p-3 border-t border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-[#161B22]/70 space-y-2 backdrop-blur-sm">
           {!sidebarCollapsed ? (
             <>
               <div className="flex items-center justify-between px-1">
@@ -353,7 +353,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
         }`}
       >
         {/* Topbar Header */}
-        <header className="h-14 px-6 bg-[#FFFFFF] dark:bg-[#161B22] border-b border-slate-200 dark:border-slate-800 sticky top-0 z-30 flex items-center justify-between shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+        <header className="h-14 px-6 bg-white/85 dark:bg-[#161B22]/85 border-b border-slate-200/80 dark:border-slate-800/80 sticky top-0 z-30 flex items-center justify-between shadow-[0_1px_2px_rgba(15,23,42,0.03)] backdrop-blur-xl">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileOpen(true)}
@@ -373,7 +373,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({
             {/* Quick Command Search */}
             <button
               onClick={() => setCommandPaletteOpen(true)}
-              className="hidden sm:flex items-center gap-2 h-8 px-2.5 rounded-lg text-xs bg-[#F5F6F8] hover:bg-slate-100 text-slate-500 border border-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-slate-400 dark:border-slate-700 transition-colors"
+              className="hidden sm:flex items-center gap-2 h-8 px-2.5 rounded-lg text-xs bg-slate-50 hover:bg-slate-100 text-slate-500 border border-slate-200 dark:bg-slate-800/80 dark:hover:bg-slate-700 dark:text-slate-400 dark:border-slate-700 transition-colors shadow-sm"
             >
               <Search className="w-3.5 h-3.5 text-slate-400" />
               <span className="text-[11px]">Search actions...</span>

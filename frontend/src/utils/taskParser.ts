@@ -107,7 +107,7 @@ function inferCategory(text: string): string {
   if (/\b(code|coding|program|debug|deploy|git|api|software|app|web|database)\b/i.test(text)) return "Coding";
   if (/\b(gym|workout|health|errand|personal|lunch|dinner|grocery|clean|laundry)\b/i.test(text)) return "Personal";
   if (/\b(math|algorithm|study|read|hw|homework|assignment|exam|quiz|test|revision)\b/i.test(text)) return "Study";
-  if (/\b(presentation|slides|deck|present|pitch)\b/i.test(text)) return "Academic";
+  if (/\b(presentation|slides|present|pitch|briefing|brief)\b/i.test(text)) return "Academic";
   if (/\b(meeting|call|discussion|standup|sync|review)\b/i.test(text)) return "Meeting";
   return "Coursework";
 }
@@ -152,8 +152,9 @@ export function parseNaturalLanguageTask(
   const category = inferCategory(text);
   const difficulty = inferDifficulty(priority, category);
 
-  // Clean title: strip action verbs and extracted metadata
-  let title = text.replace(ACTION_VERBS, "");
+  // Preserve the user-intent verb in the title when present, while stripping
+  // extracted timing/priority metadata that was only used for parsing.
+  let title = text;
   for (const pattern of TITLE_CLEAN_PATTERNS) {
     title = title.replace(pattern, " ");
   }

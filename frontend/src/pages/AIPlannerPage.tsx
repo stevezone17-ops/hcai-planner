@@ -204,7 +204,7 @@ export const AIPlannerPage: React.FC<{ onNavigateTimetable?: () => void }> = ({
           <button
             onClick={handleGenerate}
             disabled={isGenerating}
-            className="h-8 px-3.5 rounded-lg text-xs font-medium text-white bg-[#5B5CE2] hover:bg-[#4F46E5] disabled:opacity-50 transition-colors flex items-center gap-1.5 shadow-xs"
+            className="h-8 px-3.5 rounded-lg text-xs font-medium text-white bg-[#5B5CE2] hover:bg-[#4F46E5] disabled:opacity-50 transition-colors flex items-center gap-1.5 shadow-soft"
           >
             <Sparkles className="w-3.5 h-3.5" />
             <span>{isGenerating ? "Synthesizing..." : "Generate AI Timetable"}</span>
@@ -213,7 +213,7 @@ export const AIPlannerPage: React.FC<{ onNavigateTimetable?: () => void }> = ({
       </div>
 
       {/* Planning Controls Bar */}
-      <div className="bg-white dark:bg-[#161B22] border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 shadow-xs space-y-4">
+      <div className="bg-white/95 dark:bg-[#161B22]/95 border border-slate-200 dark:border-slate-800 rounded-xl p-4 sm:p-5 shadow-soft space-y-4 backdrop-blur-sm">
         <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-2.5">
           <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
             <Sliders className="w-3.5 h-3.5 text-[#5B5CE2]" />

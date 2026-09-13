@@ -31,6 +31,12 @@ class ScheduleService:
         item = ScheduleService.get_item(db, item_id, user_id)
         if not item:
             return None
+        if item.locked:
+            item.status = "LOCKED"
+            item.approved = True
+            db.commit()
+            db.refresh(item)
+            return item
         item.status = "ACCEPTED"
         item.approved = True
         
@@ -50,6 +56,8 @@ class ScheduleService:
     def reject_item(db: Session, item_id: int, reason: Optional[str] = None, user_id: int = 1) -> Optional[ScheduleItem]:
         item = ScheduleService.get_item(db, item_id, user_id)
         if not item:
+            return None
+        if item.locked:
             return None
         item.status = "REJECTED"
         item.approved = False
@@ -75,6 +83,8 @@ class ScheduleService:
     def modify_item(db: Session, item_id: int, req: ScheduleModifyRequest, user_id: int = 1) -> Optional[ScheduleItem]:
         item = ScheduleService.get_item(db, item_id, user_id)
         if not item:
+            return None
+        if item.locked:
             return None
         
         # Save original timing if not already saved
@@ -108,8 +118,7 @@ class ScheduleService:
             return None
         item.locked = True
         item.approved = True
-        if item.status == "PROPOSED":
-            item.status = "ACCEPTED"
+        item.status = "LOCKED"
 
         feedback = Feedback(
             user_id=user_id,
@@ -128,6 +137,8 @@ class ScheduleService:
         if not item:
             return None
         item.locked = False
+        if item.status == "LOCKED":
+            item.status = "ACCEPTED"
 
         feedback = Feedback(
             user_id=user_id,
